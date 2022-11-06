@@ -11,17 +11,21 @@
     <div class="lw">
         <div class="top">
             <div class="title">Status</div>
-            <div class="status" id="summary">Loading... <img src="./icons/degraded.svg"></div>
+            <button onclick="load()" class="button s refresh">Refresh</button>
         </div>
         <div class="items">
-            <a href="https://www.withered.app" class="item">
-                <p class="name">Website</p>
+            <div class="item">
+                <a href="https://www.withered.app" class="name">Website</a>
                 <p class="status" id="status-website">Loading...</p>
-            </a>
-            <a href="https://api.withered.app" class="item">
-                <p class="name">API</p>
+            </div>
+            <div class="item">
+                <a href="https://api.withered.app" class="name">API</a>
                 <p class="status" id="status-api">Loading...</p>
-            </a>
+            </div>
+            <div class="item">
+                <p class="name">Database</p>
+                <p class="status" id="status-database">Loading...</p>
+            </div>
         </div>
         <p>Experiencing repetitive connection issues? <a href="mailto:foxl@withered.app">Contact us</a>.</p>
     </div>
@@ -74,13 +78,42 @@
         }
         .items .item:last-child { margin-bottom: 0; }
         .items .item .name { font-size: 22px; font-weight: 600; }
+        .items .item a.name {
+            color: #f8f8f8;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+        .items .item a.name:hover {
+            color: #44A5FF;
+            text-decoration-style: solid;
+        }
         .items .item .status { font-size: 18px; display: flex; align-items: center; }
         .items .item .status img { margin-left: 7px; height: 24px; }
+
+        /* buttons */
+        .button {
+            font-family: 'Inter', Helvetica, Arial, sans-serif;
+            padding: 10px 40px;
+            margin: 5px 10px;
+            font-size: 22px;
+            font-weight: 500;
+            background-color: #131313;
+            border: 1px solid #2E2E2E;
+            color: #f8f8f8;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .button.s { font-size: 18px; padding: 10px 15px; }
+        .button:hover {
+            background-color: #222;
+        }
 
         a {
             text-decoration: none;
             color: #44A5FF;
             cursor: pointer;
+            transition: 0.15s;
         }
         a:hover {
             color: #6eb9ff;
