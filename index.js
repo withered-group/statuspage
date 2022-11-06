@@ -5,7 +5,13 @@ function load() {
     }
 
     let web = document.getElementById('status-website');
+    web.innerHTML = "Loading... <img src='./icons/degraded.svg'>";
+    let api = document.getElementById('status-api');
+    api.innerHTML = "Loading... <img src='./icons/degraded.svg'>";
+    let db = document.getElementById('status-database');
+    db.innerHTML = "Loading... <img src='./icons/degraded.svg'>";
     let webst = Date.now();
+
     this.img = new Image();
 
     this.img.onload = function() {
@@ -20,9 +26,8 @@ function load() {
     this.start = new Date().getTime();
     this.img.src = "https://www.withered.app/assets/media/icon.png";
 
-    let api = document.getElementById('status-api');
-    let db = document.getElementById('status-database');
     let apist = Date.now();
+
     $.ajax({
         url: 'https://api.withered.app',
         type: 'get',
