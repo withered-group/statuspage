@@ -27,7 +27,7 @@
                 <p class="status" id="status-database">Loading...</p>
             </div>
         </div>
-        <p>Experiencing repetitive connection issues? <a href="mailto:foxl@withered.app">Contact us</a>.</p>
+        <p>Experiencing repetitive connection issues? <a class="ar" href="mailto:foxl@withered.app">Contact us</a></p>
     </div>
 
     <script src="./jquery.min.js"></script>
@@ -119,14 +119,14 @@
             color: #6eb9ff;
             text-decoration: underline;
         }
-        .al::before {
-            content: url('./icons/arrow-left.svg');
-            margin-right: 6px;
+        .al::before, .ar::after {
             min-width: 15px;
             width: 15px;
             min-height: 12px;
             height: 12px;
         }
+        .al::before { margin-right: 6px; content: url('./icons/arrow-left.svg'); }
+        .ar::after { margin-left: 6px; content: url('./icons/arrow-right.svg'); }
     </style>
 </body>
 </html>
