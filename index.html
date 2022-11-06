@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status - Withered Launcher</title>
+</head>
+<body onload="load()">
+    <a id="btw" href="https://withered.app" class="al">Back to Withered</a>
+    <div class="lw">
+        <div class="top">
+            <div class="title">Status</div>
+            <div class="status" id="summary">Some systems offline <img src="./icons/offline.svg"></div>
+        </div>
+        <div class="items">
+            <div class="item">
+                <p class="name">Website</p>
+                <p class="status" id="status-website">Loading...</p>
+            </div>
+            <div class="item">
+                <p class="name">API</p>
+                <p class="status" id="status-api">Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="./jquery.min.js"></script>
+    <script src="./index.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * { font-family: 'Inter', Helvetica, Arial, sans-serif; }
+        p { margin: 0; }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            background-color: #0e0e0e;
+            color: #f8f8f8;
+            padding: 10px;
+        }
+        body > a { margin-bottom: 10px; }
+        .lw {
+            max-width: 1000px;
+            width: 100%;
+            align-self: center;
+        }
+
+        .top { display: flex; justify-content: space-between; align-items: center; }
+        .top .title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        .top .status {
+            font-size: 20px;
+            font-weight: 500;
+            display: flex; align-items: center;
+        }
+        .top .status img { margin-left: 7px; height: 28px; }
+
+        .items { margin-top: 10px; }
+        .items .item {
+            background-color: #131313;
+            border: 1px solid #2e2e2e;
+            border-radius: 7px;
+            margin-bottom: 10px;
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .items .item:last-child { margin-bottom: 0; }
+        .items .item .name { font-size: 22px; font-weight: 600; }
+        .items .item .status { font-size: 18px; display: flex; align-items: center; }
+        .items .item .status img { margin-left: 7px; height: 24px; }
+
+        a {
+            text-decoration: none;
+            color: #44A5FF;
+            cursor: pointer;
+        }
+        a:hover {
+            color: #6eb9ff;
+            text-decoration: underline;
+        }
+        .al::before {
+            content: url('./icons/arrow-left.svg');
+            margin-right: 6px;
+            min-width: 15px;
+            width: 15px;
+            min-height: 12px;
+            height: 12px;
+        }
+    </style>
+</body>
+</html>
