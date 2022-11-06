@@ -31,7 +31,7 @@ function load() {
            let difference = Date.now() - apist;
            console.log('api took '+difference);
 
-           if (difference >= 1000) { api.innerHTML = "Degraded <img src='./icons/degraded.svg'>"; statuses.api = "Degraded"; }
+           if (difference >= 2000) { api.innerHTML = "Degraded <img src='./icons/degraded.svg'>"; statuses.api = "Degraded"; }
            else { api.innerHTML = "Online <img src='./icons/online.svg'>"; statuses.api = "Online"; }
         },
         error: function(result){
