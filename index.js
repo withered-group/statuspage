@@ -4,30 +4,22 @@ function load() {
         document.getElementById('btw').setAttribute('onclick', "loadPage('library', null)");
     }
 
-    let web = document.getElementById('status-website');
-    web.innerHTML = "Loading... <img src='./icons/degraded.svg'>";
-    let api = document.getElementById('status-api');
-    api.innerHTML = "Loading... <img src='./icons/degraded.svg'>";
-    let db = document.getElementById('status-database');
-    db.innerHTML = "Loading... <img src='./icons/degraded.svg'>";
+    setStatus('web', 'loading'); setStatus('api', 'loading'); setStatus('db', 'loading');
+
     let webst = Date.now();
-
     this.img = new Image();
-
     this.img.onload = function() {
         let difference = Date.now() - webst;
            console.log('web took '+difference);
 
-        if (difference >= 2000) { web.innerHTML = "Degraded <img src='./icons/degraded.svg'>"; }
-        else { web.innerHTML = "Online <img src='./icons/online.svg'>"; }
+        if (difference >= 2000) { setStatus('web', 'degraded', difference); }
+        else { setStatus('web', 'online', difference); }
     };
-    this.img.onerror = function() { web.innerHTML = "Offline <img src='./icons/offline.svg'>"; };
-
+    this.img.onerror = function() { setStatus('web', 'offline'); };
     this.start = new Date().getTime();
     this.img.src = "https://www.withered.app/assets/media/icon.png";
 
     let apist = Date.now();
-
     $.ajax({
         url: 'https://api.withered.app',
         type: 'get',
@@ -37,14 +29,22 @@ function load() {
            let difference = Date.now() - apist;
            console.log('api took '+difference);
 
-           if (difference >= 2000) { api.innerHTML = "Degraded (took "+difference+"ms) <img src='./icons/degraded.svg'>";
-                db.innerHTML = "Degraded <img src='./icons/degraded.svg'>"; }
-           else { api.innerHTML = "Online <img src='./icons/online.svg'>";
-                db.innerHTML = "Online <img src='./icons/online.svg'>"; }
+           if (difference >= 2000) { setStatus('api', 'degraded', difference); setStatus('db', 'degraded', difference); }
+           else { setStatus('api', 'online', difference); setStatus('db', 'online', difference); }
         },
         error: function(result){
-            api.innerHTML = "Offline <img src='./icons/offline.svg'>";
-            db.innerHTML = "Offline <img src='./icons/offline.svg'>";
+            setStatus('api', 'offline'); setStatus('db', 'offline');
         }
     });
+}
+
+function setStatus(service, status, ping=0) {
+    let e = document.getElementById('status-'+service);
+    e.classList = "status";
+    e.classList.add(status);
+    if (status === "online") { e.innerHTML = "Online <img src='./icons/online.svg'>"; }
+    else if (status === "degraded") { e.innerHTML = "Degraded ("+ping+"ms) <img src='./icons/degraded.svg'>"; }
+    else if (status === "offline") { e.innerHTML = "Offline <img src='./icons/offline.svg'>"; }
+    else if (status === "loading") { e.innerHTML = "Loading... <img src='./icons/loading.svg'>"; }
+    else if (status === "couldnotload") { e.innerHTML = "Could not load <img src='./icons/loading.svg'>"; }
 }
